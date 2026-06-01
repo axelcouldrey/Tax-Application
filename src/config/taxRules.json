@@ -1,0 +1,12 @@
+{
+  "taxYear": "2026-2027",
+  "source": "IRD individual income tax rates from 1 April 2025",
+  "currency": "NZD",
+  "brackets": [
+    { "upTo": 15600, "rate": 0.105 },
+    { "upTo": 53500, "rate": 0.175 },
+    { "upTo": 78100, "rate": 0.3 },
+    { "upTo": 180000, "rate": 0.33 },
+    { "upTo": null, "rate": 0.39 }
+  ]
+}
