@@ -2,7 +2,6 @@ import studentLoanRules from '../config/studentLoan.json'
 // Keep PAYE rules in JSON so tax-year changes do not require rewriting logic.
 import taxRules from '../config/taxRules.json'
 
-
 type TaxBracket = {
   upTo: number | null
   rate: number
@@ -38,7 +37,7 @@ function calculateProgressiveTax(
     }
 
     // A null upper limit represents the final tax bracket with no cap.
-    const currentLimit = bracket.upTo ?? Number.POSITIVE_INFINITY
+    const currentLimit = bracket.upTo ?? Number.POSITIVE_INFINITY 
     const taxableInBracket = Math.min(
       remainingIncome,
       currentLimit - previousLimit,
