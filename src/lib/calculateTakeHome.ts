@@ -1,6 +1,7 @@
 import studentLoanRules from '../config/studentLoan.json'
 // Keep PAYE rules in JSON so tax-year changes do not require rewriting logic.
 import taxRules from '../config/taxRules.json'
+import accLevyRules from '../config/accLevy.json'
 
 type TaxBracket = {
   upTo: number | null
@@ -15,6 +16,8 @@ type CalculateTakeHomeInput = {
 
 type CalculateTakeHomeResult = {
   annualSalary: number
+  incomeTax: number
+  accLevy: number
   paye: number
   studentLoan: number
   kiwiSaver: number
@@ -37,7 +40,7 @@ function calculateProgressiveTax(
     }
 
     // A null upper limit represents the final tax bracket with no cap.
-    const currentLimit = bracket.upTo ?? Number.POSITIVE_INFINITY 
+    const currentLimit = bracket.upTo ?? Number.POSITIVE_INFINITY
     const taxableInBracket = Math.min(
       remainingIncome,
       currentLimit - previousLimit,
@@ -54,10 +57,18 @@ function calculateProgressiveTax(
 export function calculateTakeHome(
   input: CalculateTakeHomeInput,
 ): CalculateTakeHomeResult {
-  const paye = calculateProgressiveTax(
+  const incomeTax = calculateProgressiveTax(
     input.annualSalary,
     taxRules.brackets,
   )
+
+  const accLevy =
+    Math.min(
+      input.annualSalary,
+      accLevyRules.maximumLiableEarnings,
+    ) * accLevyRules.rate
+
+  const paye = incomeTax + accLevy
 
   const studentLoan = input.hasStudentLoan
     ? Math.max(
@@ -73,6 +84,8 @@ export function calculateTakeHome(
 
   return {
     annualSalary: input.annualSalary,
+    incomeTax,
+    accLevy,
     paye,
     studentLoan,
     kiwiSaver,

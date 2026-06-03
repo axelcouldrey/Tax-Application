@@ -7,7 +7,8 @@ const MAX_ANNUAL_SALARY = 10_000_000
 const currencyFormatter = new Intl.NumberFormat('en-NZ', {
   style: 'currency',
   currency: 'NZD',
-  maximumFractionDigits: 0,
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
 })
 
 function formatCurrency(value: number) {
