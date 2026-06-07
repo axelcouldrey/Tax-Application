@@ -129,51 +129,89 @@ function App() {
               </p>
             </div>
 
-            <dl className="mt-5 space-y-3 text-sm">
-              <div className="flex justify-between gap-4">
-                <dt className="text-slate-600">Gross salary</dt>
-                <dd className="font-medium">
-                  {formatCurrency(result.annualSalary)}
-                </dd>
-              </div>
-
-              <div className="flex justify-between gap-4">
-                <dt className="text-slate-600">PAYE</dt>
-                <dd className="font-medium">
-                  -{formatCurrency(result.paye)}
-                </dd>
-              </div>
-
-              <div className="flex justify-between gap-4">
-                <dt className="text-slate-600">Student loan</dt>
-                <dd className="font-medium">
-                  -{formatCurrency(result.studentLoan)}
-                </dd>
-              </div>
-
-              <div className="flex justify-between gap-4">
-                <dt className="text-slate-600">KiwiSaver</dt>
-                <dd className="font-medium">
-                  -{formatCurrency(result.kiwiSaver)}
-                </dd>
-              </div>
-
-              <div className="border-t border-slate-200 pt-3">
+            <div className="mt-6 space-y-6 text-sm">
+              <dl>
                 <div className="flex justify-between gap-4">
-                  <dt className="text-slate-600">Monthly take-home</dt>
-                  <dd className="font-medium">
-                    {formatCurrency(result.monthlyTakeHome)}
+                  <dt className="font-medium text-slate-700">Gross salary</dt>
+                  <dd className="font-semibold">
+                    {formatCurrency(result.annualSalary)}
                   </dd>
                 </div>
-              </div>
+              </dl>
 
-              <div className="flex justify-between gap-4">
-                <dt className="text-slate-600">Weekly take-home</dt>
-                <dd className="font-medium">
-                  {formatCurrency(result.weeklyTakeHome)}
-                </dd>
-              </div>
-            </dl>
+              <section className="border-t border-slate-200 pt-5">
+                <h3 className="text-xs font-semibold uppercase text-slate-500">
+                  PAYE deductions
+                </h3>
+
+                <dl className="mt-3 space-y-3">
+                  <div className="flex justify-between gap-4">
+                    <dt className="text-slate-600">Income tax</dt>
+                    <dd className="font-medium">
+                      -{formatCurrency(result.incomeTax)}
+                    </dd>
+                  </div>
+
+                  <div className="flex justify-between gap-4">
+                    <dt className="text-slate-600">ACC earners’ levy</dt>
+                    <dd className="font-medium">
+                      -{formatCurrency(result.accLevy)}
+                    </dd>
+                  </div>
+
+                  <div className="flex justify-between gap-4 border-t border-slate-200 pt-3">
+                    <dt className="font-semibold text-slate-800">Total PAYE</dt>
+                    <dd className="font-semibold">
+                      -{formatCurrency(result.paye)}
+                    </dd>
+                  </div>
+                </dl>
+              </section>
+
+              <section className="border-t border-slate-200 pt-5">
+                <h3 className="text-xs font-semibold uppercase text-slate-500">
+                  Other deductions
+                </h3>
+
+                <dl className="mt-3 space-y-3">
+                  <div className="flex justify-between gap-4">
+                    <dt className="text-slate-600">Student loan</dt>
+                    <dd className="font-medium">
+                      -{formatCurrency(result.studentLoan)}
+                    </dd>
+                  </div>
+
+                  <div className="flex justify-between gap-4">
+                    <dt className="text-slate-600">KiwiSaver</dt>
+                    <dd className="font-medium">
+                      -{formatCurrency(result.kiwiSaver)}
+                    </dd>
+                  </div>
+                </dl>
+              </section>
+
+              <section className="border-t border-slate-200 pt-5">
+                <h3 className="text-xs font-semibold uppercase text-slate-500">
+                  Take-home by period
+                </h3>
+
+                <dl className="mt-3 space-y-3">
+                  <div className="flex justify-between gap-4">
+                    <dt className="text-slate-600">Monthly</dt>
+                    <dd className="font-medium">
+                      {formatCurrency(result.monthlyTakeHome)}
+                    </dd>
+                  </div>
+
+                  <div className="flex justify-between gap-4">
+                    <dt className="text-slate-600">Weekly</dt>
+                    <dd className="font-medium">
+                      {formatCurrency(result.weeklyTakeHome)}
+                    </dd>
+                  </div>
+                </dl>
+              </section>
+            </div>
 
             <p className="mt-5 text-xs text-slate-500">
               This is an educational estimate and does not include every payroll
