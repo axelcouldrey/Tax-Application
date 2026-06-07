@@ -1,73 +1,75 @@
-# React + TypeScript + Vite
+# Take-Home Pay Calculator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A take-home pay calculator currently focused on New Zealand salary and wage
+earners.
 
-Currently, two official plugins are available:
+Users can enter an annual salary, select a KiwiSaver contribution rate, and
+indicate whether they have a student loan. The application estimates annual,
+monthly, and weekly take-home pay and provides a breakdown of deductions.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+> This application is an educational project and does not provide financial,
+> tax, or payroll advice.
 
-## React Compiler
+## Product Vision
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The long-term goal is to build a secure, production-style platform that allows
+users to:
 
-## Expanding the ESLint configuration
+- Calculate take-home pay for supported countries.
+- Select country-specific tax years and payroll settings.
+- Compare salary scenarios.
+- Create an account and save calculations.
+- Review historical calculations and rule versions.
+- Use the application securely across multiple devices.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+New Zealand is the first supported country and provides the initial domain model
+for evolving the application.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Current Features
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- New Zealand annual salary input.
+- Progressive income-tax calculation.
+- ACC earners' levy calculation.
+- KiwiSaver employee contribution options.
+- Optional student-loan repayments.
+- Annual, monthly, and weekly take-home estimates.
+- Configuration-driven New Zealand tax rules.
+- Unit tests for the calculation logic.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Technology
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Vitest
+- ESLint
+
+The project currently runs entirely in the browser. It does not yet have a
+backend, database, or user authentication.
+
+## Prerequisites
+
+Install:
+
+- Node.js
+- npm
+- Git
+
+Check that they are available:
+
+```bash
+node --version
+npm --version
+git --version
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Current Architecture
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+src/
+├── config/    Country-specific tax rates and thresholds
+├── lib/       Calculation and domain logic
+├── App.tsx    React user interface
+└── main.tsx   Application entry point
 ```
