@@ -63,13 +63,155 @@ node --version
 npm --version
 git --version
 ```
+## Local Setup
+
+Clone the repository and install its dependencies:
+
+```bash
+git clone <repo-url>
+cd <repo-directory>
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Open the URL printed by Vite, usually:
+
+```bash
+http://localhost:5173
+```
+
+## Available Commands
+
+```bash
+npm run dev
+``` 
+Starts the local dev server.
+
+```bash
+npm run test:run
+```
+Runs the test suite once.
+
+```bash
+npm test
+``` 
+Runs Vitest in watch mode.
+
+```bash
+npm run lint
+```
+Checks the source code using ESLint.
+
+```bash
+npm run build
+```
+Runs TypeScript checks and creates a production build.
+
+```bash
+npm run preview
+```
+Serves the production build locally for inspection.
+
+
 
 ## Current Architecture
 
-```bash
+```txt
 src/
 ├── config/    Country-specific tax rates and thresholds
 ├── lib/       Calculation and domain logic
 ├── App.tsx    React user interface
 └── main.tsx   Application entry point
 ```
+
+The current data flow is:
+
+```txt
+User input
+    ↓
+React state
+    ↓
+calculateTakeHome()
+    ↓
+Configuration-driven calculation
+    ↓
+Results displayed by React
+```
+
+## Calculation Assumptions
+
+The current calculator:
+
+- Supports New Zealand only.
+- Uses rules configured for the 2026-2027 tax year.
+- Assumes one main source of salary or wage income.
+- Calculates progressive annual income tax.
+- Includes the ACC earners' levy.
+- Calculates employee KiwiSaver contributions from gross salary.
+- Applies student-loan repayment rules when selected.
+- Estimates monthly and weekly amounts from the annual result.
+
+## Known Limitations
+
+The calculator does not currently account for:
+
+- Different tax codes or secondary employment.
+- Exact payroll-period rounding.
+- Employer KiwiSaver contributions or ESCT.
+- Tax credits, benefits, allowances, bonuses, or irregular income.
+- Temporary KiwiSaver contribution-rate reductions.
+- Individual circumstances that affect final tax liability.
+- Tax years other than the configured year.
+- Countries other than New Zealand.
+- User accounts or saved calculations.
+
+## Oficial Sources
+
+The configured rules are based on official Inland Revenue guidance:
+
+ - Individual income-tax rates https://www.ird.govt.nz/income-tax/income-tax-for-individuals/tax-codes-and-tax-rates-for-individuals/tax-rates-for-individuals
+ - KiwiSaver employee contributions https://www.ird.govt.nz/income-tax/income-tax-for-individuals/tax-codes-and-tax-rates-for-individuals/tax-rates-for-individuals
+- Student-loan repayments https://www.ird.govt.nz/student-loans
+- ACC earners' levy https://www.ird.govt.nz/student-loans
+
+## Development Workflow
+
+1. Select or create a GitHub issue.
+2. Confirm its outcome and acceptance criteria.
+3. Create a branch linked to the issue.
+4. Make and test the change.
+5. Review the local Git diff.
+6. Commit and push the branch.
+7. Open a pull request that closes the issue.
+8. Merge after checks and review pass.
+9. Update the local default branch.
+
+Before creating a pull request, run:
+
+```bash
+npm run test:run
+npm run lint
+npm run build
+```
+
+## Roadmap
+
+Planned areas of development include:
+
+- Broader calculation and boundary testing.
+- Multiple tax years.
+- Country-specific calculation modules.
+- ASP.NET Core API.
+- Relational database persistence.
+- Secure user authentication and authorization.
+- Saved calculation scenarios.
+- Automated CI/CD.
+- Containerized deployment.
+- Production observability and security controls.
+
+The roadmap is managed through GitHub Issues and the project board.
