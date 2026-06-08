@@ -1,73 +1,217 @@
-# React + TypeScript + Vite
+# Take-Home Pay Calculator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A take-home pay calculator currently focused on New Zealand salary and wage
+earners.
 
-Currently, two official plugins are available:
+Users can enter an annual salary, select a KiwiSaver contribution rate, and
+indicate whether they have a student loan. The application estimates annual,
+monthly, and weekly take-home pay and provides a breakdown of deductions.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+> This application is an educational project and does not provide financial,
+> tax, or payroll advice.
 
-## React Compiler
+## Product Vision
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The long-term goal is to build a secure, production-style platform that allows
+users to:
 
-## Expanding the ESLint configuration
+- Calculate take-home pay for supported countries.
+- Select country-specific tax years and payroll settings.
+- Compare salary scenarios.
+- Create an account and save calculations.
+- Review historical calculations and rule versions.
+- Use the application securely across multiple devices.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+New Zealand is the first supported country and provides the initial domain model
+for evolving the application.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Current Features
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- New Zealand annual salary input.
+- Progressive income-tax calculation.
+- ACC earners' levy calculation.
+- KiwiSaver employee contribution options.
+- Optional student-loan repayments.
+- Annual, monthly, and weekly take-home estimates.
+- Configuration-driven New Zealand tax rules.
+- Unit tests for the calculation logic.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Technology
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Vitest
+- ESLint
+
+The project currently runs entirely in the browser. It does not yet have a
+backend, database, or user authentication.
+
+## Prerequisites
+
+Install:
+
+- Node.js
+- npm
+- Git
+
+Check that they are available:
+
+```bash
+node --version
+npm --version
+git --version
+```
+## Local Setup
+
+Clone the repository and install its dependencies:
+
+```bash
+git clone <repo-url>
+cd <repo-directory>
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Start the development server:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+Open the URL printed by Vite, usually:
+
+```bash
+http://localhost:5173
+```
+
+## Available Commands
+
+```bash
+npm run dev
+``` 
+Starts the local dev server.
+
+```bash
+npm run test:run
+```
+Runs the test suite once.
+
+```bash
+npm test
+``` 
+Runs Vitest in watch mode.
+
+```bash
+npm run lint
+```
+Checks the source code using ESLint.
+
+```bash
+npm run build
+```
+Runs TypeScript checks and creates a production build.
+
+```bash
+npm run preview
+```
+Serves the production build locally for inspection.
+
+
+
+## Current Architecture
+
+```txt
+src/
+├── config/    Country-specific tax rates and thresholds
+├── lib/       Calculation and domain logic
+├── App.tsx    React user interface
+└── main.tsx   Application entry point
+```
+
+The current data flow is:
+
+```txt
+User input
+    ↓
+React state
+    ↓
+calculateTakeHome()
+    ↓
+Configuration-driven calculation
+    ↓
+Results displayed by React
+```
+
+## Calculation Assumptions
+
+The current calculator:
+
+- Supports New Zealand only.
+- Uses rules configured for the 2026-2027 tax year.
+- Assumes one main source of salary or wage income.
+- Calculates progressive annual income tax.
+- Includes the ACC earners' levy.
+- Calculates employee KiwiSaver contributions from gross salary.
+- Applies student-loan repayment rules when selected.
+- Estimates monthly and weekly amounts from the annual result.
+
+## Known Limitations
+
+The calculator does not currently account for:
+
+- Different tax codes or secondary employment.
+- Exact payroll-period rounding.
+- Employer KiwiSaver contributions or ESCT.
+- Tax credits, benefits, allowances, bonuses, or irregular income.
+- Temporary KiwiSaver contribution-rate reductions.
+- Individual circumstances that affect final tax liability.
+- Tax years other than the configured year.
+- Countries other than New Zealand.
+- User accounts or saved calculations.
+
+## Oficial Sources
+
+The configured rules are based on official Inland Revenue guidance:
+
+ - Individual income-tax rates https://www.ird.govt.nz/income-tax/income-tax-for-individuals/tax-codes-and-tax-rates-for-individuals/tax-rates-for-individuals
+ - KiwiSaver employee contributions https://www.ird.govt.nz/income-tax/income-tax-for-individuals/tax-codes-and-tax-rates-for-individuals/tax-rates-for-individuals
+- Student-loan repayments https://www.ird.govt.nz/student-loans
+- ACC earners' levy https://www.ird.govt.nz/student-loans
+
+## Development Workflow
+
+1. Select or create a GitHub issue.
+2. Confirm its outcome and acceptance criteria.
+3. Create a branch linked to the issue.
+4. Make and test the change.
+5. Review the local Git diff.
+6. Commit and push the branch.
+7. Open a pull request that closes the issue.
+8. Merge after checks and review pass.
+9. Update the local default branch.
+
+Before creating a pull request, run:
+
+```bash
+npm run test:run
+npm run lint
+npm run build
+```
+
+## Roadmap
+
+Planned areas of development include:
+
+- Broader calculation and boundary testing.
+- Multiple tax years.
+- Country-specific calculation modules.
+- ASP.NET Core API.
+- Relational database persistence.
+- Secure user authentication and authorization.
+- Saved calculation scenarios.
+- Automated CI/CD.
+- Containerized deployment.
+- Production observability and security controls.
+
+The roadmap is managed through GitHub Issues and the project board.
