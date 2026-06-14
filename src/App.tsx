@@ -88,9 +88,7 @@ function App() {
                 className="h-4 w-4"
                 type="checkbox"
                 checked={hasStudentLoan}
-                onChange={(event) =>
-                  setHasStudentLoan(event.target.checked)
-                }
+                onChange={(event) => setHasStudentLoan(event.target.checked)}
               />
               <span className="text-sm font-medium text-slate-700">
                 I have a student loan

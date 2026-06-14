@@ -63,10 +63,8 @@ export function calculateTakeHome(
   )
 
   const accLevy =
-    Math.min(
-      input.annualSalary,
-      accLevyRules.maximumLiableEarnings,
-    ) * accLevyRules.rate
+    Math.min(input.annualSalary, accLevyRules.maximumLiableEarnings) *
+    accLevyRules.rate
 
   const paye = incomeTax + accLevy
 
@@ -79,8 +77,7 @@ export function calculateTakeHome(
 
   const kiwiSaver = input.annualSalary * input.kiwiSaverRate
 
-  const annualTakeHome =
-    input.annualSalary - paye - studentLoan - kiwiSaver
+  const annualTakeHome = input.annualSalary - paye - studentLoan - kiwiSaver
 
   return {
     annualSalary: input.annualSalary,

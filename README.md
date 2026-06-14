@@ -63,6 +63,7 @@ node --version
 npm --version
 git --version
 ```
+
 ## Local Setup
 
 Clone the repository and install its dependencies:
@@ -85,39 +86,68 @@ Open the URL printed by Vite, usually:
 http://localhost:5173
 ```
 
+## Formatting
+
+This project uses Prettier for shared code formatting.
+
+Format all supported files with:
+
+```bash
+npm run format
+```
+
+Check formatting without changing files with:
+
+```bash
+npm run format:check
+```
+
+Recommended VS Code setting:
+
+```json
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
+```
+
 ## Available Commands
 
 ```bash
 npm run dev
-``` 
+```
+
 Starts the local dev server.
 
 ```bash
 npm run test:run
 ```
+
 Runs the test suite once.
 
 ```bash
 npm test
-``` 
+```
+
 Runs Vitest in watch mode.
 
 ```bash
 npm run lint
 ```
+
 Checks the source code using ESLint.
 
 ```bash
 npm run build
 ```
+
 Runs TypeScript checks and creates a production build.
 
 ```bash
 npm run preview
 ```
+
 Serves the production build locally for inspection.
-
-
 
 ## Current Architecture
 
@@ -174,8 +204,8 @@ The calculator does not currently account for:
 
 The configured rules are based on official Inland Revenue guidance:
 
- - Individual income-tax rates https://www.ird.govt.nz/income-tax/income-tax-for-individuals/tax-codes-and-tax-rates-for-individuals/tax-rates-for-individuals
- - KiwiSaver employee contributions https://www.ird.govt.nz/income-tax/income-tax-for-individuals/tax-codes-and-tax-rates-for-individuals/tax-rates-for-individuals
+- Individual income-tax rates https://www.ird.govt.nz/income-tax/income-tax-for-individuals/tax-codes-and-tax-rates-for-individuals/tax-rates-for-individuals
+- KiwiSaver employee contributions https://www.ird.govt.nz/income-tax/income-tax-for-individuals/tax-codes-and-tax-rates-for-individuals/tax-rates-for-individuals
 - Student-loan repayments https://www.ird.govt.nz/student-loans
 - ACC earners' levy https://www.ird.govt.nz/student-loans
 
