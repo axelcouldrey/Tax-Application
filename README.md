@@ -231,17 +231,6 @@ npm run build
 
 ## Roadmap
 
-Planned areas of development include:
-
-- Broader calculation and boundary testing.
-- Multiple tax years.
-- Country-specific calculation modules.
-- ASP.NET Core API.
-- Relational database persistence.
-- Secure user authentication and authorization.
-- Saved calculation scenarios.
-- Automated CI/CD.
-- Containerized deployment.
-- Production observability and security controls.
-
-The roadmap is managed through GitHub Issues and the project board.
+See [ROADMAP.md](ROADMAP.md) for the full phased roadmap and the reasoning
+behind each phase. The roadmap is also tracked through GitHub Issues and the
+project board.
