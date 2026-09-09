@@ -229,6 +229,11 @@ npm run lint
 npm run build
 ```
 
+## Contributing
+
+See [docs/naming-conventions.md](docs/naming-conventions.md) for how to name
+code, files, tests, branches, and environment variables.
+
 ## Roadmap
 
 See [ROADMAP.md](ROADMAP.md) for the full phased roadmap and the reasoning
