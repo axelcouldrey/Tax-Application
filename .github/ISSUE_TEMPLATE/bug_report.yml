@@ -1,0 +1,73 @@
+name: Bug report
+description: Something is broken or produces the wrong result.
+title: '[Bug]: '
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Please search existing issues first to avoid duplicates.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the bug and its impact.
+      placeholder: Take-home pay is $3 lower than the IRD calculator for an $80,000 salary.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Exact inputs and actions, so someone else can see the same bug.
+      placeholder: |
+        1. Enter a salary of 80000
+        2. Select KiwiSaver at 3%
+        3. Tick student loan
+        4. See take-home pay
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected outcome
+      description: What should have happened? Link to a source (e.g. IRD) if it is a tax-rule question.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Which part of the calculation is affected?
+      options:
+        - Income tax
+        - ACC earners' levy
+        - KiwiSaver
+        - Student loan
+        - User interface
+        - Other / not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance criteria
+      description: How will we know it is fixed? Can be filled in during triage.
+      placeholder: |
+        - [ ] Take-home pay for an $80,000 salary matches the IRD calculator.
+        - [ ] A regression test covers this case.
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Browser, screenshots, error messages, or anything else that helps.
+    validations:
+      required: false

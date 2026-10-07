@@ -1,0 +1,46 @@
+name: Change request
+description: Propose a new feature, improvement, or piece of engineering work.
+title: '[Change]: '
+labels: ['enhancement']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe the problem first, not the solution. Check ROADMAP.md to see if the work is already planned.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What is missing, painful, or limiting today, and who does it affect?
+      placeholder: Pull requests do not consistently explain scope, verification, or risk.
+    validations:
+      required: true
+
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Outcome
+      description: What will be true once this is done?
+      placeholder: Every pull request prompts the author for the information needed for review.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance criteria
+      description: A checklist of testable conditions. The issue is done when every box is ticked.
+      placeholder: |
+        - [ ] Add `.github/pull_request_template.md`.
+        - [ ] Include a linked-issue section.
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Links to related issues, ADRs, roadmap phases, alternatives considered, or out-of-scope notes.
+    validations:
+      required: false
