@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Project roadmap
+    url: https://github.com/axelcouldrey/Tax-Application/blob/master/ROADMAP.md
+    about: Check whether the work is already planned before opening a change request.
