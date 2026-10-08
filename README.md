@@ -257,6 +257,10 @@ npm run build
 See [docs/naming-conventions.md](docs/naming-conventions.md) for how to name
 code, files, tests, branches, and environment variables.
 
+Changes reach `master` only through pull requests with passing checks. See
+[docs/repository-settings.md](docs/repository-settings.md) for the branch
+ruleset and other GitHub settings.
+
 ## Roadmap
 
 See [ROADMAP.md](ROADMAP.md) for the full phased roadmap and the reasoning
