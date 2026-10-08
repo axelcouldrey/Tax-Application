@@ -52,7 +52,7 @@ backend, database, or user authentication.
 
 Install:
 
-- Node.js
+- Node.js (the version in `.nvmrc`; with nvm, run `nvm use`)
 - npm
 - Git
 
@@ -148,6 +148,29 @@ npm run preview
 ```
 
 Serves the production build locally for inspection.
+
+## Continuous Integration
+
+Every pull request, and every push to `master`, runs the
+[PR checks workflow](.github/workflows/pr-checks.yml) on GitHub Actions. It
+uses the Node.js version in `.nvmrc`, installs dependencies with `npm ci`, and
+then runs:
+
+1. Formatting check
+2. Lint
+3. Unit tests
+4. Production build
+
+If any step fails, the pull request shows a failing check. Run the same checks
+locally before pushing:
+
+```bash
+npm ci
+npm run format:check
+npm run lint
+npm run test:run
+npm run build
+```
 
 ## Current Architecture
 
