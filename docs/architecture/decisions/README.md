@@ -64,3 +64,4 @@ Note the original decision date in the ADR.
 | [0001](0001-record-architecture-decisions.md)      | Record architecture decisions          | Accepted |
 | [0002](0002-use-react-typescript-and-vite.md)      | Use React, TypeScript, and Vite        | Accepted |
 | [0003](0003-separate-calculation-logic-from-ui.md) | Separate calculation logic from the UI | Accepted |
+| [0004](0004-adopt-semantic-versioning.md)          | Adopt semantic versioning              | Accepted |
