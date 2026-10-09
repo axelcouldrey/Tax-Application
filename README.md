@@ -264,6 +264,10 @@ ruleset and other GitHub settings.
 Significant technical decisions are recorded as Architecture Decision Records
 in [docs/architecture/decisions/](docs/architecture/decisions/README.md).
 
+Releases follow Semantic Versioning. See
+[docs/versioning-and-releases.md](docs/versioning-and-releases.md) for version
+numbers, tags, release notes, and the release process.
+
 ## Roadmap
 
 See [ROADMAP.md](ROADMAP.md) for the full phased roadmap and the reasoning
