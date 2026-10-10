@@ -74,6 +74,11 @@ Configured under **Settings → General → Pull Requests**.
 
 Configured under **Settings → Advanced Security**.
 
-| Setting           | Value | Why                                                                                                                              |
-| ----------------- | ----- | -------------------------------------------------------------------------------------------------------------------------------- |
-| Dependabot alerts | On    | GitHub alerts when a dependency has a newly published vulnerability. Automated scanning in CI is planned separately (issue #84). |
+| Setting                         | Value      | Why                                                                                                                                                       |
+| ------------------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Dependabot alerts               | On         | GitHub alerts when a dependency has a newly published vulnerability. Automated scanning in CI is planned separately (issue #84).                          |
+| Private vulnerability reporting | On         | Adds a **Report a vulnerability** button to the Security tab, so vulnerabilities can be reported privately as described in [SECURITY.md](../SECURITY.md). |
+| Secret scanning                 | On         | Detects credentials such as API keys and tokens committed to the repository, including in history. Free for public repositories.                          |
+| Push protection                 | On         | Blocks a push that contains a detected secret, so it never reaches GitHub.                                                                                |
+| Dependabot security updates     | Off        | Automated update pull requests are planned with dependency scanning (issue #84).                                                                          |
+| CodeQL code scanning            | Not set up | Static analysis of the project's own code is planned in the Security Hardening phase (issue #81).                                                         |

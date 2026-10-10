@@ -16,8 +16,8 @@ Issue → Branch → Commits → Pull request → Checks → Squash merge
 - Check the [ROADMAP](ROADMAP.md) and
   [open issues](https://github.com/axelcouldrey/Tax-Application/issues) to see
   whether the work is already planned.
-- To report a security vulnerability, do **not** open a public issue. A
-  security policy is planned in issue #99.
+- To report a security vulnerability, do **not** open a public issue. Follow
+  the [security policy](SECURITY.md) instead.
 
 ## Set Up Your Environment
 
@@ -198,6 +198,7 @@ maintainer. Contributors do not need to change version numbers. See
 | Code owners                   | [.github/CODEOWNERS](.github/CODEOWNERS)                              |
 | Architecture decisions        | [docs/architecture/decisions/](docs/architecture/decisions/README.md) |
 | Issue labels                  | [docs/labels.md](docs/labels.md)                                      |
+| Reporting vulnerabilities     | [SECURITY.md](SECURITY.md)                                            |
 | Repository and branch rules   | [docs/repository-settings.md](docs/repository-settings.md)            |
 | Versioning and releases       | [docs/versioning-and-releases.md](docs/versioning-and-releases.md)    |
 | Local setup and commands      | [README.md](README.md#local-setup)                                    |
