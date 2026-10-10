@@ -113,8 +113,9 @@ Format:
 <type>/<issue-number>-<short-description>
 ```
 
-- `<type>` is one of: `feat`, `fix`, `docs`, `refactor`, `test`, `perf`,
-  `chore`. These match the commit-type vocabulary.
+- `<type>` is one of: `feat`, `fix`, `perf`, `refactor`, `test`, `docs`,
+  `ci`, `build`, `chore`. These are the same types used in commit messages
+  (see [commit-conventions.md](commit-conventions.md)).
 - `<issue-number>` is the GitHub issue the work belongs to.
 - `<short-description>` is a `kebab-case` summary, lowercase, no spaces, kept
   under roughly 50 characters.

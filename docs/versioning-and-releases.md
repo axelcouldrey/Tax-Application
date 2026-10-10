@@ -149,7 +149,7 @@ breaking change after 1.0.0, its milestone becomes the next MAJOR version.
    npm version X.Y.Z --no-git-tag-version
    ```
 
-3. Open a pull request titled `Release vX.Y.Z` and merge it once checks pass.
+3. Open a pull request titled `chore(release): vX.Y.Z` and merge it once checks pass.
 4. On an up-to-date `master`, create and push an annotated tag for the merge
    commit.
 5. Create a GitHub Release from the tag, with release notes as described

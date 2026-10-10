@@ -17,13 +17,14 @@ Configured under **Settings → Rules → Rulesets**.
 | Target             | Default branch (`master`) |
 | Bypass list        | Empty: no one is exempt   |
 
-| Rule                                  | Why                                                                                                                                          |
-| ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| Restrict deletions                    | The default branch cannot be deleted.                                                                                                        |
-| Block force pushes                    | History on `master` cannot be rewritten, so merged work cannot be lost.                                                                      |
-| Require a pull request before merging | Every change goes through a pull request, so it is linked to an issue, verified by CI, and recorded. Direct pushes to `master` are rejected. |
-| Require status checks to pass         | The `Quality checks` job from the [PR checks workflow](../.github/workflows/pr-checks.yml) must pass before merging.                         |
-| Require branches to be up to date     | A branch must include the latest `master` before merging, so CI has tested the code that will actually exist after the merge.                |
+| Rule                                  | Why                                                                                                                                                                                                |
+| ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Restrict deletions                    | The default branch cannot be deleted.                                                                                                                                                              |
+| Block force pushes                    | History on `master` cannot be rewritten, so merged work cannot be lost.                                                                                                                            |
+| Require a pull request before merging | Every change goes through a pull request, so it is linked to an issue, verified by CI, and recorded. Direct pushes to `master` are rejected.                                                       |
+| Allowed merge methods: squash only    | Each pull request becomes one commit on `master`, titled with its Conventional Commit pull request title. See [ADR-0005](architecture/decisions/0005-squash-merge-with-conventional-pr-titles.md). |
+| Require status checks to pass         | The `Quality checks` job from the [PR checks workflow](../.github/workflows/pr-checks.yml) must pass before merging.                                                                               |
+| Require branches to be up to date     | A branch must include the latest `master` before merging, so CI has tested the code that will actually exist after the merge.                                                                      |
 
 The bypass list is deliberately empty, including for repository admins. Rules
 that the owner can skip are not really rules.
@@ -57,12 +58,13 @@ must stay private belongs in environment variables or a secrets manager (see
 
 Configured under **Settings → General → Pull Requests**.
 
-| Setting                            | Value | Why                                                                                                |
-| ---------------------------------- | ----- | -------------------------------------------------------------------------------------------------- |
-| Automatically delete head branches | On    | Merged branches are removed from GitHub automatically. Local branches still need deleting by hand. |
-| Allow merge commits                | On    | Current default.                                                                                   |
-| Allow squash merging               | On    | To be revisited when release and versioning conventions are defined (issue #13).                   |
-| Allow rebase merging               | On    | To be revisited when release and versioning conventions are defined (issue #13).                   |
+| Setting                            | Value              | Why                                                                                                                                                         |
+| ---------------------------------- | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Automatically delete head branches | On                 | Merged branches are removed from GitHub automatically. Local branches still need deleting by hand.                                                          |
+| Allow merge commits                | Off                | Squash merging only. See [ADR-0005](architecture/decisions/0005-squash-merge-with-conventional-pr-titles.md).                                               |
+| Allow squash merging               | On                 | Each pull request becomes one commit on `master`.                                                                                                           |
+| Squash default commit message      | Pull request title | The pull request title, which follows [Conventional Commits](commit-conventions.md), becomes the commit message. The description stays on the pull request. |
+| Allow rebase merging               | Off                | Squash merging only.                                                                                                                                        |
 
 ## Security Settings
 
