@@ -42,6 +42,8 @@ recorded before the code is written.
   Blank issues are disabled.
 - Describe the problem first, then the outcome and acceptance criteria.
 - Large pieces of work are split into an epic with sub-issues.
+- Labels are applied as described in [docs/labels.md](docs/labels.md). The
+  issue forms add a type label automatically.
 
 ## 2. Create A Branch
 
@@ -195,6 +197,7 @@ maintainer. Contributors do not need to change version numbers. See
 | Pull request template         | [.github/pull_request_template.md](.github/pull_request_template.md)  |
 | Code owners                   | [.github/CODEOWNERS](.github/CODEOWNERS)                              |
 | Architecture decisions        | [docs/architecture/decisions/](docs/architecture/decisions/README.md) |
+| Issue labels                  | [docs/labels.md](docs/labels.md)                                      |
 | Repository and branch rules   | [docs/repository-settings.md](docs/repository-settings.md)            |
 | Versioning and releases       | [docs/versioning-and-releases.md](docs/versioning-and-releases.md)    |
 | Local setup and commands      | [README.md](README.md#local-setup)                                    |
