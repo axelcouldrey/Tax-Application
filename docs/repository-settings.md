@@ -38,6 +38,10 @@ would block every merge.
 In a team setting this should be at least **1**. Raise it as soon as a second
 contributor joins.
 
+For the same reason, **Require review from Code Owners** is off. Owners are
+defined in [`.github/CODEOWNERS`](../.github/CODEOWNERS); see
+[Code Owners](../CONTRIBUTING.md#code-owners) for when to turn it on.
+
 ## Plan Dependency
 
 On the GitHub Free plan, rulesets and branch protection are only enforced on

@@ -1,0 +1,26 @@
+# Code owners
+#
+# GitHub automatically requests a review from the owners of any file a pull
+# request changes. The LAST matching pattern wins, so keep the catch-all first
+# and more specific areas below it.
+#
+# See CONTRIBUTING.md (Code Owners) for how to extend this file.
+
+# Default owner for everything not matched below
+*                       @axelcouldrey
+
+# Calculation logic (see ADR-0003)
+/src/lib/               @axelcouldrey
+
+# Tax rules, rates, and thresholds
+/src/config/            @axelcouldrey
+
+# Dependencies
+/package.json           @axelcouldrey
+/package-lock.json      @axelcouldrey
+
+# CI workflows, templates, and repository automation
+/.github/               @axelcouldrey
+
+# Architecture decision records
+/docs/architecture/     @axelcouldrey
