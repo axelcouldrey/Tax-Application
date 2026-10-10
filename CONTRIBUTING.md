@@ -134,6 +134,44 @@ Pull requests are **squash merged**, so each one becomes a single commit on
 [ADR-0005](docs/architecture/decisions/0005-squash-merge-with-conventional-pr-titles.md)).
 The remote branch is deleted automatically.
 
+### Code Owners
+
+[`.github/CODEOWNERS`](.github/CODEOWNERS) maps areas of the repository to the
+people responsible for them. When a pull request changes a file, GitHub
+automatically requests a review from that file's owners.
+
+Today every area is owned by the maintainer, and authors are never asked to
+review their own pull requests, so this has no visible effect yet. The file
+exists so that adding a reviewer for an area is a one-line change.
+
+**How matching works:**
+
+- Patterns follow `.gitignore` rules. A leading `/` anchors a path to the
+  repository root, and a trailing `/` matches everything in a directory.
+- The **last** matching pattern wins. Keep the `*` catch-all at the top and
+  more specific paths below it.
+- Owners are GitHub usernames (`@name`) or, in an organisation, teams
+  (`@org/team`). An owner must have write access to the repository, or GitHub
+  ignores them.
+
+**When adding a new area** (for example the backend API in Phase 2, or
+infrastructure code in Phase 8):
+
+1. Add a line for its top-level directory, below the `*` line, with a comment
+   naming the area.
+2. Choose owners who understand that area well enough to approve changes to
+   it.
+3. Open the file on GitHub after pushing. GitHub shows an error on any line it
+   cannot parse.
+
+**When to enforce it:** the ruleset option _Require review from Code Owners_
+is off, because the maintainer is the only owner and cannot approve their own
+pull requests. Turn it on once every area has at least one owner who is not
+the usual author, and record the change in
+[repository-settings.md](docs/repository-settings.md).
+
+### After Merging
+
 After merging, update your local copy and delete the local branch:
 
 ```bash
@@ -155,6 +193,7 @@ maintainer. Contributors do not need to change version numbers. See
 | Naming code, files, branches  | [docs/naming-conventions.md](docs/naming-conventions.md)              |
 | Commit messages and PR titles | [docs/commit-conventions.md](docs/commit-conventions.md)              |
 | Pull request template         | [.github/pull_request_template.md](.github/pull_request_template.md)  |
+| Code owners                   | [.github/CODEOWNERS](.github/CODEOWNERS)                              |
 | Architecture decisions        | [docs/architecture/decisions/](docs/architecture/decisions/README.md) |
 | Repository and branch rules   | [docs/repository-settings.md](docs/repository-settings.md)            |
 | Versioning and releases       | [docs/versioning-and-releases.md](docs/versioning-and-releases.md)    |
