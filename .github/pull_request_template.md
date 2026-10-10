@@ -1,3 +1,8 @@
+<!--
+PR title: use Conventional Commits, e.g. "fix(calc): apply student loan threshold".
+It becomes the commit message on master. See docs/commit-conventions.md.
+-->
+
 ## Linked issue
 
 <!-- Use a closing keyword so the issue closes automatically on merge. -->
@@ -32,3 +37,4 @@ npm run build
 - [ ] Documentation updated (README, ROADMAP, ADRs, or code comments)
 - [ ] Follows naming conventions in `docs/naming-conventions.md`
 - [ ] Branch name follows `<type>/<issue-number>-<short-description>`
+- [ ] PR title follows Conventional Commits (`<type>(<scope>): <description>`)
