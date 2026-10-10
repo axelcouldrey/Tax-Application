@@ -232,41 +232,10 @@ The configured rules are based on official Inland Revenue guidance:
 - Student-loan repayments https://www.ird.govt.nz/student-loans
 - ACC earners' levy https://www.ird.govt.nz/student-loans
 
-## Development Workflow
-
-1. Select or create a GitHub issue.
-2. Confirm its outcome and acceptance criteria.
-3. Create a branch linked to the issue.
-4. Make and test the change.
-5. Review the local Git diff.
-6. Commit and push the branch.
-7. Open a pull request that closes the issue.
-8. Merge after checks and review pass.
-9. Update the local default branch.
-
-Before creating a pull request, run:
-
-```bash
-npm run test:run
-npm run lint
-npm run build
-```
-
 ## Contributing
 
-See [docs/naming-conventions.md](docs/naming-conventions.md) for how to name
-code, files, tests, branches, and environment variables.
-
-Changes reach `master` only through pull requests with passing checks. See
-[docs/repository-settings.md](docs/repository-settings.md) for the branch
-ruleset and other GitHub settings.
-
-Significant technical decisions are recorded as Architecture Decision Records
-in [docs/architecture/decisions/](docs/architecture/decisions/README.md).
-
-Releases follow Semantic Versioning. See
-[docs/versioning-and-releases.md](docs/versioning-and-releases.md) for version
-numbers, tags, release notes, and the release process.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for how to propose, make, and submit a
+change, and for links to the project's conventions.
 
 ## Roadmap
 
