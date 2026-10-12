@@ -184,9 +184,11 @@ git branch -d <branch-name>
 
 ## Releases
 
-Releases follow Semantic Versioning and are cut from `master` by the
-maintainer. Contributors do not need to change version numbers. See
-[versioning-and-releases.md](docs/versioning-and-releases.md).
+Releases follow Semantic Versioning and are automated by Release Please,
+which keeps a `chore(release): vX.Y.Z` pull request open with the next version
+and changelog. The maintainer merges it to release. Contributors never change
+version numbers or `CHANGELOG.md` by hand. See
+[versioning-and-releases.md](docs/versioning-and-releases.md#release-process).
 
 ## Reference
 

@@ -71,18 +71,16 @@ deployment pipeline (Phase 7 onward). Mark them as **pre-release** on GitHub.
 
 ## Git Tags
 
-Every release is marked with a Git tag on the merge commit in `master`.
+Every release is marked with a Git tag on the release commit in `master`.
 
 - **Format:** `v` followed by the version: `v0.1.0`, `v1.0.0-rc.1`.
-- **Type:** annotated tags, which record who tagged the release and when.
-  Lightweight tags are not used for releases.
+- **Created by:** Release Please, when it publishes the GitHub Release (see
+  [Release Process](#release-process)). Tags are not created by hand.
+- **Type:** lightweight tags created through the GitHub Release. The release
+  itself records who published it, when, and the notes (see
+  [ADR-0006](architecture/decisions/0006-automate-releases-with-release-please.md)).
 - **Immutability:** a published tag is never moved or deleted. If a release
   is wrong, publish a new PATCH version.
-
-```bash
-git tag -a v0.1.0 -m "v0.1.0: Engineering foundations"
-git push origin v0.1.0
-```
 
 ## Release Notes
 
@@ -111,8 +109,28 @@ Each entry:
 Breaking changes are listed first, under a **Breaking changes** heading, with
 what readers need to do.
 
-Automated changelog generation is planned in issue #101 and will build on
-these headings.
+### How Notes Are Generated
+
+Release notes and `CHANGELOG.md` are generated from the Conventional Commit
+titles of pull requests merged since the last release (see
+[commit-conventions.md](commit-conventions.md)):
+
+| Commit type                                | Heading                |
+| ------------------------------------------ | ---------------------- |
+| `feat`                                     | **Added**              |
+| `fix`                                      | **Fixed**              |
+| `perf`                                     | **Changed**            |
+| `revert`                                   | **Removed**            |
+| `docs`                                     | **Documentation**      |
+| any `!`                                    | **⚠ BREAKING CHANGES** |
+| `refactor`, `test`, `build`, `ci`, `chore` | Not shown              |
+
+**Documentation** is not a Keep a Changelog heading. It is included because
+much of this project's progress is documented process.
+
+**Deprecated** and **Security** cannot be derived from commit types. Add them
+by editing the changelog in the release pull request before merging it, as
+well as anything else that needs rewording for readers.
 
 ## Milestones
 
@@ -141,17 +159,40 @@ breaking change after 1.0.0, its milestone becomes the next MAJOR version.
 
 ## Release Process
 
-1. Confirm every issue in the milestone is closed or moved to a later one.
-2. Create a branch `chore/release-vX.Y.Z` and update `version` in
-   `package.json` and `package-lock.json`:
+Releases are automated with
+[Release Please](https://github.com/googleapis/release-please), run by the
+[Release workflow](../.github/workflows/release-please.yml) on every push to
+`master`.
 
-   ```bash
-   npm version X.Y.Z --no-git-tag-version
-   ```
+1. **Work is merged as normal.** After each merge, the workflow opens or
+   updates a single **release pull request** titled `chore(release): vX.Y.Z`.
+   It contains the version bump in `package.json` and `package-lock.json`
+   and the new `CHANGELOG.md` entry, worked out from commit types. If there is
+   nothing to release, there is no release pull request.
+2. **Leave it open while the phase is in progress.** It updates itself after
+   every merge. Its changelog is a live preview of the next release.
+3. **When the milestone is complete,** confirm every issue in it is closed or
+   moved to a later milestone.
+4. **Review the release pull request.** Edit its `CHANGELOG.md` entry if the
+   wording needs improving for readers, or to add **Deprecated** or
+   **Security** items.
+5. **Merge it once checks pass.** The workflow then creates the `vX.Y.Z` tag
+   and publishes the GitHub Release with the same notes.
+6. **Close the milestone.**
 
-3. Open a pull request titled `chore(release): vX.Y.Z` and merge it once checks pass.
-4. On an up-to-date `master`, create and push an annotated tag for the merge
-   commit.
-5. Create a GitHub Release from the tag, with release notes as described
-   above.
-6. Close the milestone.
+Contributors never change version numbers or `CHANGELOG.md` by hand.
+
+### Configuration
+
+| File                                                              | Purpose                                                            |
+| ----------------------------------------------------------------- | ------------------------------------------------------------------ |
+| [release-please-config.json](../release-please-config.json)       | Release type, tag format, pull request title, changelog headings   |
+| [.release-please-manifest.json](../.release-please-manifest.json) | The last released version. Updated by Release Please, not by hand. |
+
+To force a specific next version, for example `1.0.0` at the end of Phase 8,
+set `"release-as"` for the `.` package in the config file, and remove it again
+after that release.
+
+The workflow authenticates as a GitHub App so that the release pull request
+runs the required checks. See
+[repository-settings.md](repository-settings.md#release-automation).

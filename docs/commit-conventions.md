@@ -126,5 +126,5 @@ release notes can be worked out from history since the last tag:
   changes under **Breaking changes**, matching the headings in
   [versioning-and-releases.md](versioning-and-releases.md#release-notes)
 
-Today this is done by hand during the release process. Automating it is
-planned in issue #101.
+This is automated by Release Please. See
+[Release Process](versioning-and-releases.md#release-process).
