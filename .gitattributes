@@ -1,0 +1,50 @@
+# Git attributes
+#
+# Line endings: every text file is stored in Git with LF line endings and
+# checked out with LF on every operating system. This matches .editorconfig
+# and Prettier (endOfLine: lf), but is enforced by Git itself, so it applies
+# whatever editor or OS a contributor uses. Without it, a Windows checkout can
+# convert files to CRLF and make every line appear changed.
+#
+# Binary files are never converted or diffed as text.
+#
+# Later rules override earlier ones for the same file.
+
+# Default: let Git detect text files, and normalise them to LF
+*               text=auto eol=lf
+
+# Source and configuration (explicitly text)
+*.ts            text eol=lf
+*.tsx           text eol=lf
+*.js            text eol=lf
+*.json          text eol=lf
+*.css           text eol=lf
+*.html          text eol=lf
+*.md            text eol=lf
+*.yml           text eol=lf
+*.yaml          text eol=lf
+*.svg           text eol=lf
+*.sh            text eol=lf
+
+# Windows scripts need CRLF to run correctly on Windows
+*.cmd           text eol=crlf
+*.bat           text eol=crlf
+*.ps1           text eol=crlf
+
+# Binary assets: never convert line endings, never show text diffs
+*.png           binary
+*.jpg           binary
+*.jpeg          binary
+*.gif           binary
+*.webp          binary
+*.avif          binary
+*.ico           binary
+*.pdf           binary
+*.woff          binary
+*.woff2         binary
+*.ttf           binary
+*.otf           binary
+*.zip           binary
+
+# Generated files: collapse their diffs in GitHub pull requests by default
+package-lock.json linguist-generated=true

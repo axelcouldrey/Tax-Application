@@ -111,6 +111,17 @@ Recommended VS Code setting:
 }
 ```
 
+Formatting is enforced at three levels:
+
+| File             | Enforced by          | Covers                                                                      |
+| ---------------- | -------------------- | --------------------------------------------------------------------------- |
+| `.editorconfig`  | Your editor          | Indentation, charset, line endings, and whitespace while typing             |
+| `.prettierrc`    | Prettier and CI      | Code style in supported files                                               |
+| `.gitattributes` | Git, on every commit | LF line endings for text files on every OS, and binary files left untouched |
+
+`.gitattributes` is the backstop: it applies even if an editor ignores the
+other two. See the comments in the file for details.
+
 ## Available Commands
 
 ```bash
