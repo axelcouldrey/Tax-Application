@@ -128,9 +128,9 @@ titles of pull requests merged since the last release (see
 **Documentation** is not a Keep a Changelog heading. It is included because
 much of this project's progress is documented process.
 
-**Deprecated** and **Security** cannot be derived from commit types. Add them
-by editing the changelog in the release pull request before merging it, as
-well as anything else that needs rewording for readers.
+**Deprecated** and **Security** cannot be derived from commit types. Add them,
+along with anything else that needs rewording for readers, after the release
+is published (see [Release Process](#release-process)).
 
 ## Milestones
 
@@ -173,11 +173,16 @@ Releases are automated with
    every merge. Its changelog is a live preview of the next release.
 3. **When the milestone is complete,** confirm every issue in it is closed or
    moved to a later milestone.
-4. **Review the release pull request.** Edit its `CHANGELOG.md` entry if the
-   wording needs improving for readers, or to add **Deprecated** or
-   **Security** items.
-5. **Merge it once checks pass.** The workflow then creates the `vX.Y.Z` tag
-   and publishes the GitHub Release with the same notes.
+4. **Review the release pull request,** then merge it once checks pass.
+   Do not edit it: Release Please regenerates the pull request whenever
+   `master` changes, so manual edits can be lost. The workflow then creates
+   the `vX.Y.Z` tag and publishes the GitHub Release.
+5. **Polish the notes, if needed.** Edit the GitHub Release on the
+   [Releases page](https://github.com/axelcouldrey/Tax-Application/releases),
+   and make the same change to the entry in `CHANGELOG.md` in a `chore` pull
+   request. Use this to add a summary, **Deprecated** or **Security** items,
+   or clearer wording. Release Please only adds new entries above existing
+   ones, so edits to past entries are kept.
 6. **Close the milestone.**
 
 Contributors never change version numbers or `CHANGELOG.md` by hand.

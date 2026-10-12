@@ -21,8 +21,7 @@
   ],
   "packages": {
     ".": {
-      "package-name": "paye_nz_taxapp",
-      "release-as": "0.1.0"
+      "package-name": "paye_nz_taxapp"
     }
   }
 }

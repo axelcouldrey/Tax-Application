@@ -2,6 +2,26 @@
 
 ## 0.1.0 (2026-10-12)
 
+First release, completing Phase 0: Engineering Foundations ([#3](https://github.com/axelcouldrey/Tax-Application/issues/3)).
+
+### Highlights
+
+* Income tax and ACC earners' levy shown separately in the PAYE breakdown ([#1](https://github.com/axelcouldrey/Tax-Application/issues/1))
+* README, Prettier formatting, EditorConfig, and naming conventions ([#4](https://github.com/axelcouldrey/Tax-Application/issues/4), [#5](https://github.com/axelcouldrey/Tax-Application/issues/5), [#6](https://github.com/axelcouldrey/Tax-Application/issues/6), [#7](https://github.com/axelcouldrey/Tax-Application/issues/7))
+* Pull request template and issue forms ([#8](https://github.com/axelcouldrey/Tax-Application/issues/8), [#9](https://github.com/axelcouldrey/Tax-Application/issues/9))
+* CI quality checks on every pull request: formatting, lint, tests, and build ([#10](https://github.com/axelcouldrey/Tax-Application/issues/10))
+* Branch protection for `master` with required checks ([#11](https://github.com/axelcouldrey/Tax-Application/issues/11))
+* Architecture decision records ([#12](https://github.com/axelcouldrey/Tax-Application/issues/12))
+* Semantic versioning and release conventions ([#13](https://github.com/axelcouldrey/Tax-Application/issues/13))
+* Conventional Commits with squash merging ([#95](https://github.com/axelcouldrey/Tax-Application/issues/95))
+* Contributing guide, CODEOWNERS, label taxonomy, and security policy ([#96](https://github.com/axelcouldrey/Tax-Application/issues/96), [#97](https://github.com/axelcouldrey/Tax-Application/issues/97), [#98](https://github.com/axelcouldrey/Tax-Application/issues/98), [#99](https://github.com/axelcouldrey/Tax-Application/issues/99))
+* Line endings normalised with `.gitattributes` ([#100](https://github.com/axelcouldrey/Tax-Application/issues/100))
+* Automated releases with Release Please ([#101](https://github.com/axelcouldrey/Tax-Application/issues/101))
+
+### Security
+
+* Update dependencies to fix known vulnerabilities ([#106](https://github.com/axelcouldrey/Tax-Application/issues/106))
+
 
 ### Documentation
 
