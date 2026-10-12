@@ -1,0 +1,39 @@
+name: Release
+
+on:
+  push:
+    branches: [master]
+  # Allows re-running release-please by hand from the Actions tab.
+  workflow_dispatch:
+
+# The default token is not used for writes. All writes use the release bot's
+# GitHub App token, so the release pull request triggers the PR checks
+# workflow like any other pull request.
+permissions:
+  contents: read
+
+# Never run two releases at once, and never cancel one part-way through.
+concurrency:
+  group: release-please
+  cancel-in-progress: false
+
+jobs:
+  release-please:
+    name: Release Please
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Generate release bot token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.RELEASE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
+
+      - name: Create or update the release pull request, or publish a release
+        uses: googleapis/release-please-action@v5
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json

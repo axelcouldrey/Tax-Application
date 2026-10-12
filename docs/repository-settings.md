@@ -82,3 +82,40 @@ Configured under **Settings → Advanced Security**.
 | Push protection                 | On         | Blocks a push that contains a detected secret, so it never reaches GitHub.                                                                                |
 | Dependabot security updates     | Off        | Automated update pull requests are planned with dependency scanning (issue #84).                                                                          |
 | CodeQL code scanning            | Not set up | Static analysis of the project's own code is planned in the Security Hardening phase (issue #81).                                                         |
+
+## Release Automation
+
+The [Release workflow](../.github/workflows/release-please.yml) authenticates
+as a GitHub App instead of using the built-in `GITHUB_TOKEN`. Pull requests
+created with `GITHUB_TOKEN` do not trigger other workflows, so the release
+pull request would never run the required `Quality checks` and could never
+merge. See
+[ADR-0006](architecture/decisions/0006-automate-releases-with-release-please.md).
+
+| Item                   | Value                                                                                           |
+| ---------------------- | ----------------------------------------------------------------------------------------------- |
+| GitHub App             | `axelcouldrey-release-bot`, owned by `@axelcouldrey`                                            |
+| Installed on           | `axelcouldrey/Tax-Application` only                                                             |
+| Repository permissions | Contents: read and write; Pull requests: read and write; Issues: read and write; Metadata: read |
+| Webhook                | Inactive                                                                                        |
+| Actions variable       | `RELEASE_APP_CLIENT_ID`: the app's client ID (not secret)                                       |
+| Actions secret         | `RELEASE_APP_PRIVATE_KEY`: the app's private key                                                |
+
+Issues permission is needed because Release Please labels its pull requests,
+and labels are managed through the issues API.
+
+### Rotating The Private Key
+
+Rotate the key if it may have been exposed, and at least once a year:
+
+1. In the app's settings, open **Credentials → Key pairs** and select
+   **New key**. A `.pem` file downloads.
+2. Store it and delete the local copy:
+
+   ```bash
+   gh secret set RELEASE_APP_PRIVATE_KEY < path/to/key.pem
+   rm path/to/key.pem
+   ```
+
+3. Run the **Release** workflow from the Actions tab to confirm it works.
+4. Delete the old key under **Key pairs**.
